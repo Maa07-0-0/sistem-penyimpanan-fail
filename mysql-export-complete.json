@@ -1,0 +1,804 @@
+{
+    "database": "db_fail_tongod",
+    "tables": {
+        "borrowing_records": {
+            "create_sql": "CREATE TABLE `borrowing_records` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `file_id` bigint(20) unsigned NOT NULL,\n  `borrower_id` bigint(20) unsigned NOT NULL,\n  `approved_by` bigint(20) unsigned DEFAULT NULL,\n  `purpose` text NOT NULL,\n  `borrowed_date` date NOT NULL,\n  `due_date` date NOT NULL,\n  `returned_date` date DEFAULT NULL,\n  `returned_to` bigint(20) unsigned DEFAULT NULL,\n  `status` enum('dipinjam','dikembalikan','overdue') DEFAULT 'dipinjam',\n  `notes` text DEFAULT NULL,\n  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),\n  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),\n  PRIMARY KEY (`id`),\n  KEY `file_id` (`file_id`),\n  KEY `borrower_id` (`borrower_id`),\n  KEY `fk_approved_by` (`approved_by`),\n  KEY `fk_returned_to` (`returned_to`),\n  CONSTRAINT `borrowing_records_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`),\n  CONSTRAINT `borrowing_records_ibfk_2` FOREIGN KEY (`borrower_id`) REFERENCES `users` (`id`),\n  CONSTRAINT `fk_approved_by` FOREIGN KEY (`approved_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,\n  CONSTRAINT `fk_returned_to` FOREIGN KEY (`returned_to`) REFERENCES `users` (`id`) ON DELETE SET NULL\n) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "PRI",
+                    "default": null,
+                    "extra": "auto_increment"
+                },
+                {
+                    "name": "file_id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "borrower_id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "approved_by",
+                    "type": "bigint(20) unsigned",
+                    "null": true,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "purpose",
+                    "type": "text",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "borrowed_date",
+                    "type": "date",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "due_date",
+                    "type": "date",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "returned_date",
+                    "type": "date",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "returned_to",
+                    "type": "bigint(20) unsigned",
+                    "null": true,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "status",
+                    "type": "enum('dipinjam','dikembalikan','overdue')",
+                    "null": true,
+                    "key": "",
+                    "default": "dipinjam",
+                    "extra": ""
+                },
+                {
+                    "name": "notes",
+                    "type": "text",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": ""
+                },
+                {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": "on update current_timestamp()"
+                }
+            ],
+            "indexes": [
+                {
+                    "Table": "borrowing_records",
+                    "Non_unique": 0,
+                    "Key_name": "PRIMARY",
+                    "Seq_in_index": 1,
+                    "Column_name": "id",
+                    "Collation": "A",
+                    "Cardinality": 1,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "borrowing_records",
+                    "Non_unique": 1,
+                    "Key_name": "file_id",
+                    "Seq_in_index": 1,
+                    "Column_name": "file_id",
+                    "Collation": "A",
+                    "Cardinality": 1,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "borrowing_records",
+                    "Non_unique": 1,
+                    "Key_name": "borrower_id",
+                    "Seq_in_index": 1,
+                    "Column_name": "borrower_id",
+                    "Collation": "A",
+                    "Cardinality": 1,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "borrowing_records",
+                    "Non_unique": 1,
+                    "Key_name": "fk_approved_by",
+                    "Seq_in_index": 1,
+                    "Column_name": "approved_by",
+                    "Collation": "A",
+                    "Cardinality": 1,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "YES",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "borrowing_records",
+                    "Non_unique": 1,
+                    "Key_name": "fk_returned_to",
+                    "Seq_in_index": 1,
+                    "Column_name": "returned_to",
+                    "Collation": "A",
+                    "Cardinality": 1,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "YES",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                }
+            ]
+        },
+        "files": {
+            "create_sql": "CREATE TABLE `files` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `file_id` varchar(255) NOT NULL,\n  `title` varchar(255) NOT NULL,\n  `reference_number` varchar(255) DEFAULT NULL,\n  `document_year` year(4) NOT NULL,\n  `department` varchar(255) NOT NULL,\n  `document_type` enum('surat_rasmi','perjanjian','permit','laporan','lain_lain') NOT NULL,\n  `description` text DEFAULT NULL,\n  `status` enum('tersedia','dipinjam','arkib','tidak_aktif') DEFAULT 'tersedia',\n  `location_id` bigint(20) unsigned NOT NULL,\n  `created_by` bigint(20) unsigned NOT NULL,\n  `updated_by` bigint(20) unsigned DEFAULT NULL,\n  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),\n  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),\n  `deleted_at` timestamp NULL DEFAULT NULL,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `file_id` (`file_id`),\n  KEY `location_id` (`location_id`),\n  KEY `created_by` (`created_by`),\n  KEY `fk_files_updated_by` (`updated_by`),\n  CONSTRAINT `files_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),\n  CONSTRAINT `files_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),\n  CONSTRAINT `fk_files_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL\n) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "PRI",
+                    "default": null,
+                    "extra": "auto_increment"
+                },
+                {
+                    "name": "file_id",
+                    "type": "varchar(255)",
+                    "null": false,
+                    "key": "UNI",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "title",
+                    "type": "varchar(255)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "reference_number",
+                    "type": "varchar(255)",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "document_year",
+                    "type": "year(4)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "department",
+                    "type": "varchar(255)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "document_type",
+                    "type": "enum('surat_rasmi','perjanjian','permit','laporan','lain_lain')",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "status",
+                    "type": "enum('tersedia','dipinjam','arkib','tidak_aktif')",
+                    "null": true,
+                    "key": "",
+                    "default": "tersedia",
+                    "extra": ""
+                },
+                {
+                    "name": "location_id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "created_by",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "updated_by",
+                    "type": "bigint(20) unsigned",
+                    "null": true,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": ""
+                },
+                {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": "on update current_timestamp()"
+                },
+                {
+                    "name": "deleted_at",
+                    "type": "timestamp",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "Table": "files",
+                    "Non_unique": 0,
+                    "Key_name": "PRIMARY",
+                    "Seq_in_index": 1,
+                    "Column_name": "id",
+                    "Collation": "A",
+                    "Cardinality": 0,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "files",
+                    "Non_unique": 0,
+                    "Key_name": "file_id",
+                    "Seq_in_index": 1,
+                    "Column_name": "file_id",
+                    "Collation": "A",
+                    "Cardinality": 0,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "files",
+                    "Non_unique": 1,
+                    "Key_name": "location_id",
+                    "Seq_in_index": 1,
+                    "Column_name": "location_id",
+                    "Collation": "A",
+                    "Cardinality": 0,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "files",
+                    "Non_unique": 1,
+                    "Key_name": "created_by",
+                    "Seq_in_index": 1,
+                    "Column_name": "created_by",
+                    "Collation": "A",
+                    "Cardinality": 0,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "files",
+                    "Non_unique": 1,
+                    "Key_name": "fk_files_updated_by",
+                    "Seq_in_index": 1,
+                    "Column_name": "updated_by",
+                    "Collation": "A",
+                    "Cardinality": 0,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "YES",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                }
+            ]
+        },
+        "locations": {
+            "create_sql": "CREATE TABLE `locations` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `room` varchar(50) NOT NULL,\n  `rack` varchar(50) NOT NULL,\n  `slot` varchar(50) NOT NULL,\n  `description` varchar(255) DEFAULT NULL,\n  `is_available` tinyint(1) DEFAULT 1,\n  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),\n  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `unique_location` (`room`,`rack`,`slot`)\n) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "PRI",
+                    "default": null,
+                    "extra": "auto_increment"
+                },
+                {
+                    "name": "room",
+                    "type": "varchar(50)",
+                    "null": false,
+                    "key": "MUL",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "rack",
+                    "type": "varchar(50)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "slot",
+                    "type": "varchar(50)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "description",
+                    "type": "varchar(255)",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "is_available",
+                    "type": "tinyint(1)",
+                    "null": true,
+                    "key": "",
+                    "default": "1",
+                    "extra": ""
+                },
+                {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": ""
+                },
+                {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": "on update current_timestamp()"
+                }
+            ],
+            "indexes": [
+                {
+                    "Table": "locations",
+                    "Non_unique": 0,
+                    "Key_name": "PRIMARY",
+                    "Seq_in_index": 1,
+                    "Column_name": "id",
+                    "Collation": "A",
+                    "Cardinality": 6,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "locations",
+                    "Non_unique": 0,
+                    "Key_name": "unique_location",
+                    "Seq_in_index": 1,
+                    "Column_name": "room",
+                    "Collation": "A",
+                    "Cardinality": 6,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "locations",
+                    "Non_unique": 0,
+                    "Key_name": "unique_location",
+                    "Seq_in_index": 2,
+                    "Column_name": "rack",
+                    "Collation": "A",
+                    "Cardinality": 6,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "locations",
+                    "Non_unique": 0,
+                    "Key_name": "unique_location",
+                    "Seq_in_index": 3,
+                    "Column_name": "slot",
+                    "Collation": "A",
+                    "Cardinality": 6,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                }
+            ]
+        },
+        "users": {
+            "create_sql": "CREATE TABLE `users` (\n  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `name` varchar(255) NOT NULL,\n  `email` varchar(255) NOT NULL,\n  `password` varchar(255) NOT NULL,\n  `role` enum('admin','staff_jabatan','staff_pembantu','user_view') DEFAULT 'user_view',\n  `department` varchar(255) DEFAULT NULL,\n  `position` varchar(255) DEFAULT NULL,\n  `phone` varchar(255) DEFAULT NULL,\n  `is_active` tinyint(1) DEFAULT 1,\n  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),\n  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `email` (`email`)\n) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "bigint(20) unsigned",
+                    "null": false,
+                    "key": "PRI",
+                    "default": null,
+                    "extra": "auto_increment"
+                },
+                {
+                    "name": "name",
+                    "type": "varchar(255)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "email",
+                    "type": "varchar(255)",
+                    "null": false,
+                    "key": "UNI",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "password",
+                    "type": "varchar(255)",
+                    "null": false,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "role",
+                    "type": "enum('admin','staff_jabatan','staff_pembantu','user_view')",
+                    "null": true,
+                    "key": "",
+                    "default": "user_view",
+                    "extra": ""
+                },
+                {
+                    "name": "department",
+                    "type": "varchar(255)",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "position",
+                    "type": "varchar(255)",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "phone",
+                    "type": "varchar(255)",
+                    "null": true,
+                    "key": "",
+                    "default": null,
+                    "extra": ""
+                },
+                {
+                    "name": "is_active",
+                    "type": "tinyint(1)",
+                    "null": true,
+                    "key": "",
+                    "default": "1",
+                    "extra": ""
+                },
+                {
+                    "name": "created_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": ""
+                },
+                {
+                    "name": "updated_at",
+                    "type": "timestamp",
+                    "null": false,
+                    "key": "",
+                    "default": "current_timestamp()",
+                    "extra": "on update current_timestamp()"
+                }
+            ],
+            "indexes": [
+                {
+                    "Table": "users",
+                    "Non_unique": 0,
+                    "Key_name": "PRIMARY",
+                    "Seq_in_index": 1,
+                    "Column_name": "id",
+                    "Collation": "A",
+                    "Cardinality": 4,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                },
+                {
+                    "Table": "users",
+                    "Non_unique": 0,
+                    "Key_name": "email",
+                    "Seq_in_index": 1,
+                    "Column_name": "email",
+                    "Collation": "A",
+                    "Cardinality": 4,
+                    "Sub_part": null,
+                    "Packed": null,
+                    "Null": "",
+                    "Index_type": "BTREE",
+                    "Comment": "",
+                    "Index_comment": ""
+                }
+            ]
+        }
+    },
+    "data": {
+        "borrowing_records": [
+            {
+                "id": 1,
+                "file_id": 1,
+                "borrower_id": 3,
+                "approved_by": 3,
+                "purpose": "Untuk merujuk isi kandungan ",
+                "borrowed_date": "2025-08-05",
+                "due_date": "2025-08-12",
+                "returned_date": "2025-08-05",
+                "returned_to": 3,
+                "status": "dikembalikan",
+                "notes": "",
+                "created_at": "2025-08-05 10:48:45",
+                "updated_at": "2025-08-05 10:49:14"
+            }
+        ],
+        "files": [
+            {
+                "id": 1,
+                "file_id": "FAIL20250001",
+                "title": "Kertas Cadangan Sistem Penyimpanan Fail Pejabat Daerah Tongod ",
+                "reference_number": "PDTGD - 001 \/ (08 \/ 2025)",
+                "document_year": "2025",
+                "department": "Pentadbiran",
+                "document_type": "laporan",
+                "description": "Kertas Cadangan Sistem Penyimpanan Fail",
+                "status": "tersedia",
+                "location_id": 1,
+                "created_by": 3,
+                "updated_by": null,
+                "created_at": "2025-08-05 10:05:31",
+                "updated_at": "2025-08-05 10:49:14",
+                "deleted_at": null
+            }
+        ],
+        "locations": [
+            {
+                "id": 1,
+                "room": "Bilik A",
+                "rack": "Rak 1",
+                "slot": "Slot A",
+                "description": "Lokasi Bilik A - Rak 1 - Slot A",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 2,
+                "room": "Bilik A",
+                "rack": "Rak 1",
+                "slot": "Slot B",
+                "description": "Lokasi Bilik A - Rak 1 - Slot B",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 3,
+                "room": "Bilik A",
+                "rack": "Rak 2",
+                "slot": "Slot A",
+                "description": "Lokasi Bilik A - Rak 2 - Slot A",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 4,
+                "room": "Bilik B",
+                "rack": "Rak 1",
+                "slot": "Slot A",
+                "description": "Lokasi Bilik B - Rak 1 - Slot A",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 5,
+                "room": "Bilik B",
+                "rack": "Rak 1",
+                "slot": "Slot B",
+                "description": "Lokasi Bilik B - Rak 1 - Slot B",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 6,
+                "room": "Bilik C",
+                "rack": "Rak 1",
+                "slot": "Slot B",
+                "description": "",
+                "is_available": 1,
+                "created_at": "2025-08-05 09:48:32",
+                "updated_at": "2025-08-05 09:49:03"
+            }
+        ],
+        "users": [
+            {
+                "id": 1,
+                "name": "Administrator",
+                "email": "admin@tongod.gov.my",
+                "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+                "role": "admin",
+                "department": "Pentadbiran",
+                "position": "Pentadbir Sistem",
+                "phone": null,
+                "is_active": 1,
+                "created_at": "2025-08-04 22:46:33",
+                "updated_at": "2025-08-04 22:46:33"
+            },
+            {
+                "id": 2,
+                "name": "Ahmad bin Abdullah",
+                "email": "ahmad@tongod.gov.my",
+                "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+                "role": "staff_jabatan",
+                "department": "Pentadbiran",
+                "position": "Pegawai Jabatan",
+                "phone": null,
+                "is_active": 1,
+                "created_at": "2025-08-04 22:46:33",
+                "updated_at": "2025-08-04 22:46:33"
+            },
+            {
+                "id": 3,
+                "name": "Siti Nurhaliza",
+                "email": "siti@tongod.gov.my",
+                "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+                "role": "staff_pembantu",
+                "department": "Kewangan",
+                "position": "Pembantu Tadbir",
+                "phone": null,
+                "is_active": 1,
+                "created_at": "2025-08-04 22:46:33",
+                "updated_at": "2025-08-04 22:46:33"
+            },
+            {
+                "id": 4,
+                "name": "Jusman Juspin",
+                "email": "jusman@tongod.gov.my",
+                "password": "$2y$10$Dkb2DzCEZyUzjfg\/BuKZ2OB0n0X.mIpXOPqq.ERMKaUxJ71z7Iwb2",
+                "role": "staff_pembantu",
+                "department": "Kewangan",
+                "position": "Pembantu Tadbir",
+                "phone": "0111234567",
+                "is_active": 1,
+                "created_at": "2025-08-05 15:58:18",
+                "updated_at": "2025-08-05 15:58:18"
+            }
+        ]
+    },
+    "export_time": "2025-08-06 01:57:19"
+}

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where composer)",
+      "Bash(\"C:\\Users\\pc\\.config\\herd-lite\\bin\\composer.bat\" create-project laravel/laravel sistem-penyimpanan-fail)",
+      "Bash(composer.bat create-project:*)",
+      "Bash(ls:*)",
+      "Bash(composer:*)",
+      "Bash(cmd /c:*)",
+      "Bash(php artisan:*)",
+      "Bash(powershell:*)",
+      "Bash(cp:*)",
+      "Bash(php:*)"
+    ],
+    "deny": []
+  }
+}

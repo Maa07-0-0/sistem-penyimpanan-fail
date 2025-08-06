@@ -1,0 +1,272 @@
+{
+    "database": "db_fail_tongod",
+    "tables": {
+        "borrowing_records": {
+            "create_sql": "CREATE TABLE borrowing_records (\n    id BIGSERIAL NOT NULL,\n    file_id BIGINT(20) NOT NULL,\n    borrower_id BIGINT(20) NOT NULL,\n    approved_by BIGINT(20),\n    purpose TEXT NOT NULL,\n    borrowed_date DATE NOT NULL,\n    due_date DATE NOT NULL,\n    returned_date DATE,\n    returned_to BIGINT(20),\n    status VARCHAR('dipinjam','dikembalikan','overdue') DEFAULT 'dipinjam',\n    notes TEXT,\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    PRIMARY KEY (id)\n);",
+            "columns": [
+                "id BIGSERIAL NOT NULL",
+                "file_id BIGINT(20) NOT NULL",
+                "borrower_id BIGINT(20) NOT NULL",
+                "approved_by BIGINT(20)",
+                "purpose TEXT NOT NULL",
+                "borrowed_date DATE NOT NULL",
+                "due_date DATE NOT NULL",
+                "returned_date DATE",
+                "returned_to BIGINT(20)",
+                "status VARCHAR('dipinjam','dikembalikan','overdue') DEFAULT 'dipinjam'",
+                "notes TEXT",
+                "created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'",
+                "updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'"
+            ],
+            "constraints": [
+                "PRIMARY KEY (id)"
+            ],
+            "sequences": [
+                {
+                    "table": "borrowing_records",
+                    "column": "id",
+                    "sequence": "borrowing_records_id_seq"
+                }
+            ]
+        },
+        "files": {
+            "create_sql": "CREATE TABLE files (\n    id BIGSERIAL NOT NULL,\n    file_id VARCHAR(255) NOT NULL,\n    title VARCHAR(255) NOT NULL,\n    reference_number VARCHAR(255),\n    document_year INTEGER(4) NOT NULL,\n    department VARCHAR(255) NOT NULL,\n    document_type VARCHAR('surat_rasmi','perjanjian','permit','laporan','lain_lain') NOT NULL,\n    description TEXT,\n    status VARCHAR('tersedia','dipinjam','arkib','tidak_aktif') DEFAULT 'tersedia',\n    location_id BIGINT(20) NOT NULL,\n    created_by BIGINT(20) NOT NULL,\n    updated_by BIGINT(20),\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    deleted_at TIMESTAMP,\n    PRIMARY KEY (id)\n);",
+            "columns": [
+                "id BIGSERIAL NOT NULL",
+                "file_id VARCHAR(255) NOT NULL",
+                "title VARCHAR(255) NOT NULL",
+                "reference_number VARCHAR(255)",
+                "document_year INTEGER(4) NOT NULL",
+                "department VARCHAR(255) NOT NULL",
+                "document_type VARCHAR('surat_rasmi','perjanjian','permit','laporan','lain_lain') NOT NULL",
+                "description TEXT",
+                "status VARCHAR('tersedia','dipinjam','arkib','tidak_aktif') DEFAULT 'tersedia'",
+                "location_id BIGINT(20) NOT NULL",
+                "created_by BIGINT(20) NOT NULL",
+                "updated_by BIGINT(20)",
+                "created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'",
+                "updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'",
+                "deleted_at TIMESTAMP"
+            ],
+            "constraints": [
+                "PRIMARY KEY (id)"
+            ],
+            "sequences": [
+                {
+                    "table": "files",
+                    "column": "id",
+                    "sequence": "files_id_seq"
+                }
+            ]
+        },
+        "locations": {
+            "create_sql": "CREATE TABLE locations (\n    id BIGSERIAL NOT NULL,\n    room VARCHAR(50) NOT NULL,\n    rack VARCHAR(50) NOT NULL,\n    slot VARCHAR(50) NOT NULL,\n    description VARCHAR(255),\n    is_available SMALLINT(1) DEFAULT '1',\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    PRIMARY KEY (id)\n);",
+            "columns": [
+                "id BIGSERIAL NOT NULL",
+                "room VARCHAR(50) NOT NULL",
+                "rack VARCHAR(50) NOT NULL",
+                "slot VARCHAR(50) NOT NULL",
+                "description VARCHAR(255)",
+                "is_available SMALLINT(1) DEFAULT '1'",
+                "created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'",
+                "updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'"
+            ],
+            "constraints": [
+                "PRIMARY KEY (id)"
+            ],
+            "sequences": [
+                {
+                    "table": "locations",
+                    "column": "id",
+                    "sequence": "locations_id_seq"
+                }
+            ]
+        },
+        "users": {
+            "create_sql": "CREATE TABLE users (\n    id BIGSERIAL NOT NULL,\n    name VARCHAR(255) NOT NULL,\n    email VARCHAR(255) NOT NULL,\n    password VARCHAR(255) NOT NULL,\n    role VARCHAR('admin','staff_jabatan','staff_pembantu','user_view') DEFAULT 'user_view',\n    department VARCHAR(255),\n    position VARCHAR(255),\n    phone VARCHAR(255),\n    is_active SMALLINT(1) DEFAULT '1',\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    PRIMARY KEY (id)\n);",
+            "columns": [
+                "id BIGSERIAL NOT NULL",
+                "name VARCHAR(255) NOT NULL",
+                "email VARCHAR(255) NOT NULL",
+                "password VARCHAR(255) NOT NULL",
+                "role VARCHAR('admin','staff_jabatan','staff_pembantu','user_view') DEFAULT 'user_view'",
+                "department VARCHAR(255)",
+                "position VARCHAR(255)",
+                "phone VARCHAR(255)",
+                "is_active SMALLINT(1) DEFAULT '1'",
+                "created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'",
+                "updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()'"
+            ],
+            "constraints": [
+                "PRIMARY KEY (id)"
+            ],
+            "sequences": [
+                {
+                    "table": "users",
+                    "column": "id",
+                    "sequence": "users_id_seq"
+                }
+            ]
+        }
+    },
+    "data": {
+        "borrowing_records": [
+            {
+                "id": 1,
+                "file_id": 1,
+                "borrower_id": 3,
+                "approved_by": 3,
+                "purpose": "Untuk merujuk isi kandungan ",
+                "borrowed_date": "2025-08-05",
+                "due_date": "2025-08-12",
+                "returned_date": "2025-08-05",
+                "returned_to": 3,
+                "status": "dikembalikan",
+                "notes": "",
+                "created_at": "2025-08-05 10:48:45",
+                "updated_at": "2025-08-05 10:49:14"
+            }
+        ],
+        "files": [
+            {
+                "id": 1,
+                "file_id": "FAIL20250001",
+                "title": "Kertas Cadangan Sistem Penyimpanan Fail Pejabat Daerah Tongod ",
+                "reference_number": "PDTGD - 001 \/ (08 \/ 2025)",
+                "document_year": "2025",
+                "department": "Pentadbiran",
+                "document_type": "laporan",
+                "description": "Kertas Cadangan Sistem Penyimpanan Fail",
+                "status": "tersedia",
+                "location_id": 1,
+                "created_by": 3,
+                "updated_by": null,
+                "created_at": "2025-08-05 10:05:31",
+                "updated_at": "2025-08-05 10:49:14",
+                "deleted_at": null
+            }
+        ],
+        "locations": [
+            {
+                "id": 1,
+                "room": "Bilik A",
+                "rack": "Rak 1",
+                "slot": "Slot A",
+                "description": "Lokasi Bilik A - Rak 1 - Slot A",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 2,
+                "room": "Bilik A",
+                "rack": "Rak 1",
+                "slot": "Slot B",
+                "description": "Lokasi Bilik A - Rak 1 - Slot B",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 3,
+                "room": "Bilik A",
+                "rack": "Rak 2",
+                "slot": "Slot A",
+                "description": "Lokasi Bilik A - Rak 2 - Slot A",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 4,
+                "room": "Bilik B",
+                "rack": "Rak 1",
+                "slot": "Slot A",
+                "description": "Lokasi Bilik B - Rak 1 - Slot A",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 5,
+                "room": "Bilik B",
+                "rack": "Rak 1",
+                "slot": "Slot B",
+                "description": "Lokasi Bilik B - Rak 1 - Slot B",
+                "is_available": 1,
+                "created_at": "2025-08-04 22:46:34",
+                "updated_at": "2025-08-04 22:46:34"
+            },
+            {
+                "id": 6,
+                "room": "Bilik C",
+                "rack": "Rak 1",
+                "slot": "Slot B",
+                "description": "",
+                "is_available": 1,
+                "created_at": "2025-08-05 09:48:32",
+                "updated_at": "2025-08-05 09:49:03"
+            }
+        ],
+        "users": [
+            {
+                "id": 1,
+                "name": "Administrator",
+                "email": "admin@tongod.gov.my",
+                "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+                "role": "admin",
+                "department": "Pentadbiran",
+                "position": "Pentadbir Sistem",
+                "phone": null,
+                "is_active": 1,
+                "created_at": "2025-08-04 22:46:33",
+                "updated_at": "2025-08-04 22:46:33"
+            },
+            {
+                "id": 2,
+                "name": "Ahmad bin Abdullah",
+                "email": "ahmad@tongod.gov.my",
+                "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+                "role": "staff_jabatan",
+                "department": "Pentadbiran",
+                "position": "Pegawai Jabatan",
+                "phone": null,
+                "is_active": 1,
+                "created_at": "2025-08-04 22:46:33",
+                "updated_at": "2025-08-04 22:46:33"
+            },
+            {
+                "id": 3,
+                "name": "Siti Nurhaliza",
+                "email": "siti@tongod.gov.my",
+                "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+                "role": "staff_pembantu",
+                "department": "Kewangan",
+                "position": "Pembantu Tadbir",
+                "phone": null,
+                "is_active": 1,
+                "created_at": "2025-08-04 22:46:33",
+                "updated_at": "2025-08-04 22:46:33"
+            },
+            {
+                "id": 4,
+                "name": "Jusman Juspin",
+                "email": "jusman@tongod.gov.my",
+                "password": "$2y$10$Dkb2DzCEZyUzjfg\/BuKZ2OB0n0X.mIpXOPqq.ERMKaUxJ71z7Iwb2",
+                "role": "staff_pembantu",
+                "department": "Kewangan",
+                "position": "Pembantu Tadbir",
+                "phone": "0111234567",
+                "is_active": 1,
+                "created_at": "2025-08-05 15:58:18",
+                "updated_at": "2025-08-05 15:58:18"
+            }
+        ]
+    },
+    "migration_sql": {
+        "borrowing_records": "CREATE TABLE borrowing_records (\n    id BIGSERIAL NOT NULL,\n    file_id BIGINT(20) NOT NULL,\n    borrower_id BIGINT(20) NOT NULL,\n    approved_by BIGINT(20),\n    purpose TEXT NOT NULL,\n    borrowed_date DATE NOT NULL,\n    due_date DATE NOT NULL,\n    returned_date DATE,\n    returned_to BIGINT(20),\n    status VARCHAR('dipinjam','dikembalikan','overdue') DEFAULT 'dipinjam',\n    notes TEXT,\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    PRIMARY KEY (id)\n);",
+        "files": "CREATE TABLE files (\n    id BIGSERIAL NOT NULL,\n    file_id VARCHAR(255) NOT NULL,\n    title VARCHAR(255) NOT NULL,\n    reference_number VARCHAR(255),\n    document_year INTEGER(4) NOT NULL,\n    department VARCHAR(255) NOT NULL,\n    document_type VARCHAR('surat_rasmi','perjanjian','permit','laporan','lain_lain') NOT NULL,\n    description TEXT,\n    status VARCHAR('tersedia','dipinjam','arkib','tidak_aktif') DEFAULT 'tersedia',\n    location_id BIGINT(20) NOT NULL,\n    created_by BIGINT(20) NOT NULL,\n    updated_by BIGINT(20),\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    deleted_at TIMESTAMP,\n    PRIMARY KEY (id)\n);",
+        "locations": "CREATE TABLE locations (\n    id BIGSERIAL NOT NULL,\n    room VARCHAR(50) NOT NULL,\n    rack VARCHAR(50) NOT NULL,\n    slot VARCHAR(50) NOT NULL,\n    description VARCHAR(255),\n    is_available SMALLINT(1) DEFAULT '1',\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    PRIMARY KEY (id)\n);",
+        "users": "CREATE TABLE users (\n    id BIGSERIAL NOT NULL,\n    name VARCHAR(255) NOT NULL,\n    email VARCHAR(255) NOT NULL,\n    password VARCHAR(255) NOT NULL,\n    role VARCHAR('admin','staff_jabatan','staff_pembantu','user_view') DEFAULT 'user_view',\n    department VARCHAR(255),\n    position VARCHAR(255),\n    phone VARCHAR(255),\n    is_active SMALLINT(1) DEFAULT '1',\n    created_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    updated_at TIMESTAMP NOT NULL DEFAULT 'current_timestamp()',\n    PRIMARY KEY (id)\n);"
+    }
+}

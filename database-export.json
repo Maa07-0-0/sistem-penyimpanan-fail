@@ -1,0 +1,154 @@
+{
+    "borrowing_records": [
+        {
+            "id": 1,
+            "file_id": 1,
+            "borrower_id": 3,
+            "approved_by": 3,
+            "purpose": "Untuk merujuk isi kandungan ",
+            "borrowed_date": "2025-08-05",
+            "due_date": "2025-08-12",
+            "returned_date": "2025-08-05",
+            "returned_to": 3,
+            "status": "dikembalikan",
+            "notes": "",
+            "created_at": "2025-08-05 10:48:45",
+            "updated_at": "2025-08-05 10:49:14"
+        }
+    ],
+    "files": [
+        {
+            "id": 1,
+            "file_id": "FAIL20250001",
+            "title": "Kertas Cadangan Sistem Penyimpanan Fail Pejabat Daerah Tongod ",
+            "reference_number": "PDTGD - 001 \/ (08 \/ 2025)",
+            "document_year": "2025",
+            "department": "Pentadbiran",
+            "document_type": "laporan",
+            "description": "Kertas Cadangan Sistem Penyimpanan Fail",
+            "status": "tersedia",
+            "location_id": 1,
+            "created_by": 3,
+            "updated_by": null,
+            "created_at": "2025-08-05 10:05:31",
+            "updated_at": "2025-08-05 10:49:14",
+            "deleted_at": null
+        }
+    ],
+    "locations": [
+        {
+            "id": 1,
+            "room": "Bilik A",
+            "rack": "Rak 1",
+            "slot": "Slot A",
+            "description": "Lokasi Bilik A - Rak 1 - Slot A",
+            "is_available": 1,
+            "created_at": "2025-08-04 22:46:34",
+            "updated_at": "2025-08-04 22:46:34"
+        },
+        {
+            "id": 2,
+            "room": "Bilik A",
+            "rack": "Rak 1",
+            "slot": "Slot B",
+            "description": "Lokasi Bilik A - Rak 1 - Slot B",
+            "is_available": 1,
+            "created_at": "2025-08-04 22:46:34",
+            "updated_at": "2025-08-04 22:46:34"
+        },
+        {
+            "id": 3,
+            "room": "Bilik A",
+            "rack": "Rak 2",
+            "slot": "Slot A",
+            "description": "Lokasi Bilik A - Rak 2 - Slot A",
+            "is_available": 1,
+            "created_at": "2025-08-04 22:46:34",
+            "updated_at": "2025-08-04 22:46:34"
+        },
+        {
+            "id": 4,
+            "room": "Bilik B",
+            "rack": "Rak 1",
+            "slot": "Slot A",
+            "description": "Lokasi Bilik B - Rak 1 - Slot A",
+            "is_available": 1,
+            "created_at": "2025-08-04 22:46:34",
+            "updated_at": "2025-08-04 22:46:34"
+        },
+        {
+            "id": 5,
+            "room": "Bilik B",
+            "rack": "Rak 1",
+            "slot": "Slot B",
+            "description": "Lokasi Bilik B - Rak 1 - Slot B",
+            "is_available": 1,
+            "created_at": "2025-08-04 22:46:34",
+            "updated_at": "2025-08-04 22:46:34"
+        },
+        {
+            "id": 6,
+            "room": "Bilik C",
+            "rack": "Rak 1",
+            "slot": "Slot B",
+            "description": "",
+            "is_available": 1,
+            "created_at": "2025-08-05 09:48:32",
+            "updated_at": "2025-08-05 09:49:03"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Administrator",
+            "email": "admin@tongod.gov.my",
+            "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+            "role": "admin",
+            "department": "Pentadbiran",
+            "position": "Pentadbir Sistem",
+            "phone": null,
+            "is_active": 1,
+            "created_at": "2025-08-04 22:46:33",
+            "updated_at": "2025-08-04 22:46:33"
+        },
+        {
+            "id": 2,
+            "name": "Ahmad bin Abdullah",
+            "email": "ahmad@tongod.gov.my",
+            "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+            "role": "staff_jabatan",
+            "department": "Pentadbiran",
+            "position": "Pegawai Jabatan",
+            "phone": null,
+            "is_active": 1,
+            "created_at": "2025-08-04 22:46:33",
+            "updated_at": "2025-08-04 22:46:33"
+        },
+        {
+            "id": 3,
+            "name": "Siti Nurhaliza",
+            "email": "siti@tongod.gov.my",
+            "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi",
+            "role": "staff_pembantu",
+            "department": "Kewangan",
+            "position": "Pembantu Tadbir",
+            "phone": null,
+            "is_active": 1,
+            "created_at": "2025-08-04 22:46:33",
+            "updated_at": "2025-08-04 22:46:33"
+        },
+        {
+            "id": 4,
+            "name": "Jusman Juspin",
+            "email": "jusman@tongod.gov.my",
+            "password": "$2y$10$Dkb2DzCEZyUzjfg\/BuKZ2OB0n0X.mIpXOPqq.ERMKaUxJ71z7Iwb2",
+            "role": "staff_pembantu",
+            "department": "Kewangan",
+            "position": "Pembantu Tadbir",
+            "phone": "0111234567",
+            "is_active": 1,
+            "created_at": "2025-08-05 15:58:18",
+            "updated_at": "2025-08-05 15:58:18"
+        }
+    ]
+}
